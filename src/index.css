@@ -1,13 +1,53 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    font-family: 'Plus Jakarta Sans';
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .heading-xl {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .heading-l {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  .heading-m {
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .heading-s {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 2.4px;
+  }
+
+  .body-l {
+    font-weight: medium;
+    font-size: 13px;
+    line-height: 23px;
+  }
+
+  .body-m {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .shadowCard {
+    box-shadow: 0 4px 6px rgba(54, 78, 126, 0.1015);
+  }
 }

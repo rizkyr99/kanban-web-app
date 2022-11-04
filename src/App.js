@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import '@fontsource/plus-jakarta-sans';
+import Task from './components/Task';
+import Sidebar from './components/Sidebar';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const sidebar = useSelector((state) => state.sidebar.value);
+  const theme = useSelector((state) => state.theme.value);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`h-screen w-screen overflow-hidden ${theme && 'dark'}`}>
+      <div className=''>
+        <Header />
+        <main
+          className={`h-screen overflow-auto pt-16 md:pt-20 xl:pt-24 transition-all ${
+            sidebar && 'md:pl-[260px]'
+          }`}>
+          <Sidebar />
+          <Task />
+        </main>
+      </div>
     </div>
   );
 }
