@@ -40,11 +40,11 @@ const Task = () => {
   console.log(tasks);
   return (
     <div
-      className={`bg-lightGrey dark:bg-veryDarkGrey h-full w-full ${
+      className={`h-full w-full bg-lightGrey dark:bg-veryDarkGrey ${
         tasks.length > 0
-          ? 'w-full grid gap-x-6 place-content-start grid-flow-col'
-          : 'flex flex-col gap-y-6 items-center justify-center'
-      } p-4 md:p-6 pb-32 box-border overflow-auto`}>
+          ? 'grid w-full grid-flow-col place-content-start gap-x-6'
+          : 'flex flex-col items-center justify-center gap-y-6'
+      } box-border overflow-auto p-4 pb-32 md:p-6`}>
       {tasks.length > 0 ? (
         <>
           <TaskColumn />
@@ -54,7 +54,7 @@ const Task = () => {
         </>
       ) : (
         <>
-          <h2 className='heading-l text-mediumGrey text-center'>
+          <h2 className='heading-l text-center text-mediumGrey'>
             This board is empty. Create a new column to get started.
           </h2>
           <Button label='+ Add New Column' variant='primary' />

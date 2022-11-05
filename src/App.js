@@ -3,12 +3,17 @@ import '@fontsource/plus-jakarta-sans';
 import Task from './components/Task';
 import Sidebar from './components/Sidebar';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function App() {
   const sidebar = useSelector((state) => state.sidebar.value);
   const theme = useSelector((state) => state.theme.value);
+  useEffect(() => {
+    if (theme) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
+  }, [theme]);
   return (
-    <div className={`h-screen w-screen overflow-hidden ${theme && 'dark'}`}>
+    <div className={`h-screen w-screen overflow-hidden`}>
       <div className=''>
         <Header />
         <main

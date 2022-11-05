@@ -16,17 +16,17 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`hidden md:flex md:flex-col fixed top-0 left-0 w-[260px] h-screen pt-16 md:pt-20 xl:pt-24 bg-white dark:bg-darkGrey border-r border-linesLight dark:border-linesDark z-40 transition ${
-        !sidebar && '-translate-x-full'
+      className={`fixed top-0 left-14 right-0 z-40 mt-20 h-fit w-[260px] translate-x-0 rounded-lg border-linesLight bg-white transition dark:border-linesDark dark:bg-darkGrey md:left-0 md:right-auto md:mt-0 md:flex md:h-screen md:flex-col md:rounded-none md:border-r md:pt-20 xl:pt-24 ${
+        !sidebar && 'translate-y-[-100vh] md:translate-y-0 md:-translate-x-full'
       } `}>
       <BoardList />
-      <div className='mt-auto mb-2 px-4 pt-4'>
-        <div className='bg-lightGrey dark:bg-veryDarkGrey rounded-md h-12 flex justify-center items-center gap-x-6'>
+      <div className='mt-auto px-4 py-4 md:mb-2 md:pb-0 md:pt-4'>
+        <div className='flex h-12 items-center justify-center gap-x-6 rounded-md bg-lightGrey dark:bg-veryDarkGrey'>
           <img src={sunIcon} alt='' />
           <Switch
             checked={theme}
             onChange={() => dispatch(toggleTheme())}
-            className={`bg-mainPurple relative inline-flex h-5 w-10 items-center rounded-full`}>
+            className={`relative inline-flex h-5 w-10 items-center rounded-full bg-mainPurple`}>
             <span className='sr-only'>Enable dark theme</span>
             <span
               className={`${
@@ -41,8 +41,8 @@ const Sidebar = () => {
         className={`${
           !sidebar
             ? 'fixed bottom-0 left-full bg-mainPurple hover:bg-mainPurpleHover'
-            : 'hover:bg-mainPurple/10 dark:hover:bg-white flex-shrink-0'
-        } mb-8 flex items-center gap-x-3 h-12 px-6 cursor-pointer text-mediumGrey hover:text-mainPurple rounded-r-full mr-6 z-50 group`}
+            : 'flex-shrink-0 hover:bg-mainPurple/10 dark:hover:bg-white'
+        } group z-50 mb-8 mr-6 hidden h-12 cursor-pointer items-center gap-x-3 rounded-r-full px-6 text-mediumGrey hover:text-mainPurple md:flex`}
         onClick={() => dispatch(toggleSidebar())}>
         {!sidebar ? (
           <svg width='16' height='11' xmlns='http://www.w3.org/2000/svg'>

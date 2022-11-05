@@ -3,11 +3,11 @@ import BoardItem from './BoardItem';
 
 const BoardList = () => {
   return (
-    <div className='py-8 min-h-0 flex-shrink overflow-y-auto'>
-      <span className='block mb-4 heading-s uppercase text-mediumGrey px-6'>
+    <div className='min-h-0 flex-shrink overflow-y-auto py-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-linesLight dark:scrollbar-thumb-linesDark md:py-8'>
+      <span className='heading-s mb-4 block px-6 uppercase text-mediumGrey'>
         all boards (3)
       </span>
-      <div className='pr-6 overflow-y-hidden min-h-0 flex-shrink'>
+      <div className='max-h-80 min-h-0 flex-shrink overflow-y-auto pr-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-linesLight dark:scrollbar-thumb-linesDark md:max-h-max md:overflow-y-hidden'>
         <BoardItem name='Platform Launch' active />
         <BoardItem name='Marketing Plan' />
         <BoardItem name='Roadmap' />
@@ -16,14 +16,10 @@ const BoardList = () => {
         <BoardItem name='Roadmap' />
         <BoardItem name='Sidebar Overflow Hidden Text Ellipsis' />
         <BoardItem name='Marketing Plan' />
-        <BoardItem name='Roadmap' />
-        <BoardItem name='Sidebar Overflow Hidden Text Ellipsis' />
         <BoardItem name='Marketing Plan' />
         <BoardItem name='Roadmap' />
         <BoardItem name='Sidebar Overflow Hidden Text Ellipsis' />
         <BoardItem name='Marketing Plan' />
-        <BoardItem name='Roadmap' />
-        <BoardItem name='Sidebar Overflow Hidden Text Ellipsis' />
         <BoardItem create />
       </div>
     </div>

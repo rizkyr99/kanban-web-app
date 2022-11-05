@@ -6,12 +6,12 @@ const BoardItem = ({ name, active, create }) => {
     <div
       className={`${
         active ? 'bg-mainPurple text-white' : 'text-mediumGrey'
-      } h-12 flex items-center gap-x-3 hover:bg-mainPurple/10 hover:text-mainPurple dark:hover:bg-white px-6 rounded-r-full heading-m cursor-pointer truncate w-full group`}>
+      } heading-m group flex h-12 w-full cursor-pointer items-center gap-x-3 truncate rounded-r-full px-6 hover:bg-mainPurple/10 hover:text-mainPurple dark:hover:bg-white`}>
       <svg
         className={`${active && '!fill-white'} ${
           create && 'fill-mainPurple'
-        } fill-mediumGrey group-hover:!fill-mainPurple
-        } flex-shrink-0`}
+        } } flex-shrink-0
+        fill-mediumGrey group-hover:!fill-mainPurple`}
         width='16'
         height='16'
         xmlns='http://www.w3.org/2000/svg'>
