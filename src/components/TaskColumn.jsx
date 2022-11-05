@@ -1,14 +1,14 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 
-const TaskColumn = ({ create }) => {
+const TaskColumn = ({ column, create }) => {
   return (
     <div>
       <div className='h-12'>
         {!create && (
           <div className='heading-s flex items-center gap-x-3 uppercase text-mediumGrey'>
             <span className='inline-block h-3 w-3 rounded-full bg-mainPurple'></span>{' '}
-            todo (4)
+            {column.name} (4)
           </div>
         )}
       </div>

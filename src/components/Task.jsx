@@ -2,54 +2,32 @@ import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import logoPlus from '../assets/icon-add-task-mobile.svg';
 import TaskColumn from './TaskColumn';
+import { useSelector } from 'react-redux';
 const Task = () => {
-  const [tasks, setTasks] = useState([]);
-
+  const tasks = useSelector((state) => state.task.value);
+  const currentBoard = useSelector((state) => state.currentBoard.value);
+  const [columns, setColumns] = useState([]);
   useEffect(() => {
-    const data = {
-      name: 'Web Design',
-      columns: [
-        {
-          name: 'Todo',
-          tasks: [
-            {
-              title: 'Build UI for onboarding flow',
-              subtasks: [
-                { title: 'Make coffee', done: true },
-                { title: 'Make coffee', done: true },
-              ],
-            },
-          ],
-        },
-        {
-          name: 'Todo',
-          tasks: [
-            {
-              title: 'Build UI for onboarding flow',
-              subtasks: [
-                { title: 'Make coffee', done: true },
-                { title: 'Make coffee', done: true },
-              ],
-            },
-          ],
-        },
-      ],
-    };
-    setTasks((tasks) => [...tasks, data]);
-  }, []);
-  console.log(tasks);
+    const columnIndex = tasks
+      .map((object) => object.name)
+      .indexOf(currentBoard);
+    setColumns(tasks[columnIndex].columns);
+  }, [tasks, currentBoard]);
+
+  console.log(columns);
+
   return (
     <div
       className={`h-full w-full bg-lightGrey dark:bg-veryDarkGrey ${
-        tasks.length > 0
+        columns.length > 0
           ? 'grid w-full grid-flow-col place-content-start gap-x-6'
           : 'flex flex-col items-center justify-center gap-y-6'
       } box-border overflow-auto p-4 pb-32 md:p-6`}>
-      {tasks.length > 0 ? (
+      {columns.length > 0 ? (
         <>
-          <TaskColumn />
-          <TaskColumn />
-          <TaskColumn />
+          {columns.map((column) => (
+            <TaskColumn column={column} />
+          ))}
           <TaskColumn create />
         </>
       ) : (

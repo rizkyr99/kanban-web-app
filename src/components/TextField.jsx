@@ -1,6 +1,13 @@
 import React from 'react';
 
-const TextField = ({ label, placeholder, textarea, value, onChange }) => {
+const TextField = ({
+  label,
+  placeholder,
+  textarea,
+  value,
+  onChange,
+  error,
+}) => {
   return (
     <>
       {label ? (
@@ -18,23 +25,41 @@ const TextField = ({ label, placeholder, textarea, value, onChange }) => {
               onChange={onChange}
             />
           ) : (
-            <input
-              type='text'
-              placeholder={placeholder}
-              className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] p-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25'
-              value={value}
-              onChange={onChange}
-            />
+            <div className='relative h-fit w-full'>
+              <input
+                type='text'
+                placeholder={placeholder}
+                className={`body-l h-10 w-full rounded border ${
+                  error == '' ? 'border-[rgba(130,143,163,.25)]' : 'border-red'
+                }  px-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25`}
+                value={value}
+                onChange={onChange}
+              />
+              {error && (
+                <div className='item-center body-l absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
+                  {error}
+                </div>
+              )}
+            </div>
           )}
         </div>
       ) : (
-        <input
-          type='text'
-          placeholder={placeholder}
-          className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] p-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25'
-          value={value}
-          onChange={onChange}
-        />
+        <div className='relative h-fit w-full'>
+          <input
+            type='text'
+            placeholder={placeholder}
+            className={`body-l h-10 w-full rounded border ${
+              error == '' ? 'border-[rgba(130,143,163,.25)]' : 'border-red'
+            }  px-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25`}
+            value={value}
+            onChange={onChange}
+          />
+          {error && (
+            <div className='item-center body-l absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
+              {error}
+            </div>
+          )}
+        </div>
       )}
     </>
   );

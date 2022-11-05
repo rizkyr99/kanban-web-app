@@ -10,10 +10,12 @@ import { showModal } from '../../features/modal/modalSlice';
 import { addBoard } from '../../features/task/taskSlice';
 const CreateBoardModal = () => {
   const [name, setName] = useState('');
+  const [nameError, setNameError] = useState('');
   const [columns, setColumns] = useState([
     { name: 'Todo', tasks: [] },
     { name: 'Doing', tasks: [] },
   ]);
+  const boards = useSelector((state) => state.task.value);
 
   const changeBoardColumn = (index, columnName) => {
     const newColumn = columns.map((c, i) => {
@@ -27,12 +29,29 @@ const CreateBoardModal = () => {
   };
 
   const createBoard = () => {
-    const boardData = {
-      name,
-      columns: columns,
-    };
+    if (name == '') {
+      setNameError(`Can't be empty`);
+    } else {
+      const existingBoard = boards.map((board) => board.name);
+      if (existingBoard.includes(name)) {
+        setNameError('Name already exists');
+        console.log('ada');
+      } else {
+        const boardData = {
+          name,
+          columns: columns,
+        };
 
-    dispatch(addBoard(boardData));
+        dispatch(addBoard(boardData));
+        dispatch(showModal('none'));
+        setColumns([
+          { name: 'Todo', tasks: [] },
+          { name: 'Doing', tasks: [] },
+        ]);
+        setNameError('');
+        setName('');
+      }
+    }
   };
 
   const dispatch = useDispatch();
@@ -57,17 +76,19 @@ const CreateBoardModal = () => {
               placeholder='e.g. coffee'
               value={name}
               onChange={(e) => setName(e.target.value)}
+              error={nameError}
             />
             <div id='subtasks'>
               <label className='mb-2 block text-xs font-bold text-mediumGrey dark:text-white'>
                 Board Columns
               </label>
               {columns.map((column, i) => (
-                <div className='mb-2 flex items-center gap-x-4'>
+                <div className='mb-2 flex items-center gap-x-4' key={i}>
                   <TextField
                     placeholder='e.g. coffee'
-                    value={column.name}
+                    value={column.name || ''}
                     onChange={(e) => changeBoardColumn(i, e.target.value)}
+                    error={column.name === '' && `Can't be empty`}
                   />
                   <img src={crossIcon} alt='' className='cursor-pointer' />
                 </div>
