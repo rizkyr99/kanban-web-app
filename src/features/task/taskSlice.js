@@ -38,12 +38,12 @@ export const taskSlice = createSlice({
     value: initialValue,
   },
   reducers: {
-    toggletask: (state) => {
-      state.value = !state.value;
+    addBoard: (state, action) => {
+      state.value = [...state.value, action.payload];
     },
   },
 });
 
-export const { toggletask } = taskSlice.actions;
+export const { addBoard } = taskSlice.actions;
 
 export default taskSlice.reducer;

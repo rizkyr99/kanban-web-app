@@ -23,7 +23,7 @@ const AddTaskModal = () => {
 
       <div className='fixed inset-0 overflow-y-auto'>
         <div className='flex min-h-full items-center justify-center p-4'>
-          <Dialog.Panel className='w-full max-w-sm space-y-6 rounded-md bg-white p-6 dark:bg-darkGrey'>
+          <Dialog.Panel className='w-full max-w-[480px] space-y-6 rounded-md bg-white p-6 dark:bg-darkGrey'>
             <Dialog.Title className='heading-l dark:text-white'>
               Add New Task
             </Dialog.Title>
@@ -36,11 +36,11 @@ const AddTaskModal = () => {
               </label>
               <div className='mb-2 flex items-center gap-x-4'>
                 <TextField placeholder='e.g. coffee' />
-                <img src={crossIcon} alt='' />
+                <img src={crossIcon} alt='' className='cursor-pointer' />
               </div>
               <div className='mb-2 flex items-center gap-x-4'>
                 <TextField placeholder='e.g. coffee' />
-                <img src={crossIcon} alt='' />
+                <img src={crossIcon} alt='' className='cursor-pointer' />
               </div>
               <Button label='+ Add New Subtask' variant='secondary' full />
             </div>

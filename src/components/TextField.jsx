@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextField = ({ label, placeholder, textarea }) => {
+const TextField = ({ label, placeholder, textarea, value, onChange }) => {
   return (
     <>
       {label ? (
@@ -14,12 +14,16 @@ const TextField = ({ label, placeholder, textarea }) => {
               placeholder={placeholder}
               rows='4'
               className='body-l w-full resize-none rounded border border-[rgba(130,143,163,.25)] p-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25'
+              value={value}
+              onChange={onChange}
             />
           ) : (
             <input
               type='text'
               placeholder={placeholder}
               className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] p-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25'
+              value={value}
+              onChange={onChange}
             />
           )}
         </div>
@@ -28,6 +32,8 @@ const TextField = ({ label, placeholder, textarea }) => {
           type='text'
           placeholder={placeholder}
           className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] p-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25'
+          value={value}
+          onChange={onChange}
         />
       )}
     </>
