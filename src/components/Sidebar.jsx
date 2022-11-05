@@ -7,9 +7,9 @@ import moonIcon from '../assets/icon-dark-theme.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSidebar } from '../features/sidebar/sidebarSlice';
 import { toggleTheme } from '../features/theme/themeSlice';
+import CreateBoardModal from './modals/CreateBoardModal';
 
 const Sidebar = () => {
-  const [darkTheme, setDarkTheme] = useState(false);
   const sidebar = useSelector((state) => state.sidebar.value);
   const theme = useSelector((state) => state.theme.value);
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const Sidebar = () => {
         !sidebar && 'translate-y-[-100vh] md:translate-y-0 md:-translate-x-full'
       } `}>
       <BoardList />
+      <CreateBoardModal />
       <div className='mt-auto px-4 py-4 md:mb-2 md:pb-0 md:pt-4'>
         <div className='flex h-12 items-center justify-center gap-x-6 rounded-md bg-lightGrey dark:bg-veryDarkGrey'>
           <img src={sunIcon} alt='' />

@@ -17,7 +17,7 @@ function App() {
       <div className=''>
         <Header />
         <main
-          className={`h-screen overflow-auto pt-16 md:pt-20 xl:pt-24 transition-all ${
+          className={`h-screen overflow-auto pt-16 transition-all md:pt-20 xl:pt-24 ${
             sidebar && 'md:pl-[260px]'
           }`}>
           <Sidebar />

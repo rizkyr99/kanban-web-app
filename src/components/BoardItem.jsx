@@ -1,12 +1,13 @@
 import React from 'react';
 import boardIcon from '../assets/icon-board.svg';
 
-const BoardItem = ({ name, active, create }) => {
+const BoardItem = ({ name, active, create, onClick }) => {
   return (
     <div
       className={`${
         active ? 'bg-mainPurple text-white' : 'text-mediumGrey'
-      } heading-m group flex h-12 w-full cursor-pointer items-center gap-x-3 truncate rounded-r-full px-6 hover:bg-mainPurple/10 hover:text-mainPurple dark:hover:bg-white`}>
+      } heading-m group flex h-12 w-full cursor-pointer items-center gap-x-3 truncate rounded-r-full px-6 hover:bg-mainPurple/10 hover:text-mainPurple dark:hover:bg-white`}
+      onClick={onClick}>
       <svg
         className={`${active && '!fill-white'} ${
           create && 'fill-mainPurple'

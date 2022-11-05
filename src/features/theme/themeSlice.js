@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialValue = localStorage.getItem('theme') === 'true' || false;
+
 export const themeSlice = createSlice({
   name: 'theme',
   initialState: {
-    value: false,
+    value: initialValue,
   },
   reducers: {
     toggleTheme: (state) => {
       state.value = !state.value;
+      localStorage.setItem('theme', state.value);
     },
   },
 });

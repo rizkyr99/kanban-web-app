@@ -7,16 +7,16 @@ import addTaskIcon from '../assets/icon-add-task-mobile.svg';
 import ellipsisIcon from '../assets/icon-vertical-ellipsis.svg';
 import chevronDownIcon from '../assets/icon-chevron-down.svg';
 import chevronUpIcon from '../assets/icon-chevron-up.svg';
-import crossIcon from '../assets/icon-cross.svg';
-import { Dialog } from '@headlessui/react';
-import TextField from './TextField';
+
 import { toggleSidebar } from '../features/sidebar/sidebarSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import AddTaskModal from './modals/AddTaskModal';
+import { showModal } from '../features/modal/modalSlice';
 
 const Header = () => {
   const sidebar = useSelector((state) => state.sidebar.value);
   const dispatch = useDispatch();
-  let [isOpen, setIsOpen] = useState(false);
   return (
     <header
       className={
@@ -48,35 +48,15 @@ const Header = () => {
         </h1>
         <div className='flex items-center gap-x-4'>
           <div className='md:hidden'>
-            <Button icon={addTaskIcon} onClick={() => setIsOpen(true)} />
+            <Button icon={addTaskIcon} />
           </div>
           <div className='hidden md:block'>
-            <Button label='+ Add New Task' onClick={() => setIsOpen(true)} />
+            <Button
+              label='+ Add New Task'
+              onClick={() => dispatch(showModal('add-task'))}
+            />
           </div>
-          <Dialog
-            className='relative z-50'
-            open={isOpen}
-            onClose={() => setIsOpen(false)}>
-            <div className='fixed inset-0 bg-black/50' aria-hidden='true' />
-
-            <div className='fixed inset-0 overflow-y-auto'>
-              <div className='flex min-h-full items-center justify-center p-4'>
-                <Dialog.Panel className='w-full max-w-sm space-y-6 rounded-md bg-white p-6 dark:bg-darkGrey'>
-                  <Dialog.Title className='heading-l dark:text-white'>
-                    Add New Task
-                  </Dialog.Title>
-
-                  <TextField label='Name' placeholder='e.g. coffee' />
-
-                  <Button
-                    label='Create Task'
-                    onClick={() => setIsOpen(false)}
-                    full
-                  />
-                </Dialog.Panel>
-              </div>
-            </div>
-          </Dialog>
+          <AddTaskModal />
           <img src={ellipsisIcon} alt='' />
         </div>
       </div>
