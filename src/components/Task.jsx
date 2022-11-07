@@ -14,8 +14,6 @@ const Task = () => {
     setColumns(tasks[columnIndex].columns);
   }, [tasks, currentBoard]);
 
-  console.log(columns);
-
   return (
     <div
       className={`h-full w-full bg-lightGrey dark:bg-veryDarkGrey ${

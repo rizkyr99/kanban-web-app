@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import crossIcon from '../../assets/icon-cross.svg';
 import { Dialog } from '@headlessui/react';
 import TextField from '../TextField';
@@ -11,6 +11,7 @@ import { addBoard } from '../../features/task/taskSlice';
 const CreateBoardModal = () => {
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
+  const [columnsError, setColumnsError] = useState(['', '']);
   const [columns, setColumns] = useState([
     { name: 'Todo', tasks: [] },
     { name: 'Doing', tasks: [] },
@@ -18,6 +19,7 @@ const CreateBoardModal = () => {
   const boards = useSelector((state) => state.task.value);
 
   const changeBoardColumn = (index, columnName) => {
+    console.log(columns);
     const newColumn = columns.map((c, i) => {
       if (i === index) {
         return { name: columnName, tasks: [] };
@@ -25,6 +27,7 @@ const CreateBoardModal = () => {
         return c;
       }
     });
+    console.log(columnName);
     setColumns(newColumn);
   };
 
@@ -37,22 +40,43 @@ const CreateBoardModal = () => {
         setNameError('Name already exists');
         console.log('ada');
       } else {
-        const boardData = {
-          name,
-          columns: columns,
-        };
+        if (columns.some((e) => e.name === '')) {
+          const newError = columns.map((column, i) => {
+            if (column.name === '') {
+              return `Can't be empty`;
+            } else {
+              return '';
+            }
+          });
+          setColumnsError(newError);
+          console.log(newError);
+          console.log(columns);
+        } else {
+          const boardData = {
+            name,
+            columns: columns,
+          };
 
-        dispatch(addBoard(boardData));
-        dispatch(showModal('none'));
-        setColumns([
-          { name: 'Todo', tasks: [] },
-          { name: 'Doing', tasks: [] },
-        ]);
-        setNameError('');
-        setName('');
+          dispatch(addBoard(boardData));
+          dispatch(showModal('none'));
+          setColumns([
+            { name: 'Todo', tasks: [] },
+            { name: 'Doing', tasks: [] },
+          ]);
+          setNameError('');
+          setName('');
+        }
       }
     }
   };
+
+  useEffect(() => {
+    if (name === '') {
+      setNameError(`Can't be empty`);
+    } else {
+      setNameError('');
+    }
+  }, [name]);
 
   const dispatch = useDispatch();
   const modalOpen = useSelector((state) => state.modal.value);
@@ -88,7 +112,7 @@ const CreateBoardModal = () => {
                     placeholder='e.g. coffee'
                     value={column.name || ''}
                     onChange={(e) => changeBoardColumn(i, e.target.value)}
-                    error={column.name === '' && `Can't be empty`}
+                    error={columnsError[i] !== '' ? columnsError[i] : ''}
                   />
                   <img src={crossIcon} alt='' className='cursor-pointer' />
                 </div>
@@ -97,7 +121,10 @@ const CreateBoardModal = () => {
                 label='+ Add New Column'
                 variant='secondary'
                 full
-                onClick={() => setColumns([...columns, ''])}
+                onClick={() => {
+                  setColumns([...columns, { name: '', tasks: [] }]);
+                  setColumnsError([...columnsError, '']);
+                }}
               />
             </div>
 

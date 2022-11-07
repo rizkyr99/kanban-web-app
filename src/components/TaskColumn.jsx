@@ -3,12 +3,12 @@ import TaskItem from './TaskItem';
 
 const TaskColumn = ({ column, create }) => {
   return (
-    <div>
+    <div className='min-h-[120px]'>
       <div className='h-12'>
         {!create && (
           <div className='heading-s flex items-center gap-x-3 uppercase text-mediumGrey'>
             <span className='inline-block h-3 w-3 rounded-full bg-mainPurple'></span>{' '}
-            {column.name} (4)
+            {column.name} ({column.tasks.length})
           </div>
         )}
       </div>
@@ -18,7 +18,11 @@ const TaskColumn = ({ column, create }) => {
         </div>
       ) : (
         <div className='inline-block h-max w-[280px] space-y-5'>
-          <TaskItem />
+          {column.tasks.length > 0 ? (
+            column.tasks.map((task) => <TaskItem />)
+          ) : (
+            <div className='text-mediumGrey'>The column is empty</div>
+          )}
         </div>
       )}
     </div>

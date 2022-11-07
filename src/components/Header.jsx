@@ -48,7 +48,10 @@ const Header = () => {
         </h1>
         <div className='flex items-center gap-x-4'>
           <div className='md:hidden'>
-            <Button icon={addTaskIcon} />
+            <Button
+              icon={addTaskIcon}
+              onClick={() => dispatch(showModal('add-task'))}
+            />
           </div>
           <div className='hidden md:block'>
             <Button
@@ -57,7 +60,7 @@ const Header = () => {
             />
           </div>
           <AddTaskModal />
-          <img src={ellipsisIcon} alt='' />
+          <img src={ellipsisIcon} alt='' className='cursor-pointer' />
         </div>
       </div>
     </header>

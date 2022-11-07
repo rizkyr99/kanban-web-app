@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dropdown = ({ label, options }) => {
+const Dropdown = ({ label, options, onChange }) => {
   return (
     <>
       {label ? (
@@ -10,10 +10,11 @@ const Dropdown = ({ label, options }) => {
           </label>
           <select
             type='text'
-            className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] bg-white pl-4 capitalize outline-none dark:bg-darkGrey dark:text-white'>
+            className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] bg-white pl-4 capitalize outline-none dark:bg-darkGrey dark:text-white'
+            onChange={onChange}>
             {options.map((option) => (
-              <option value={option} className='capitalize'>
-                {option}
+              <option value={option.name} className='capitalize'>
+                {option.name}
               </option>
             ))}
           </select>

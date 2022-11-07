@@ -17,7 +17,7 @@ const initialValue = [
         ],
       },
       {
-        name: 'Todo',
+        name: 'Doing',
         tasks: [
           {
             title: 'Build UI for onboarding flow',

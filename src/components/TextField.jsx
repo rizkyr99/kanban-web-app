@@ -36,7 +36,7 @@ const TextField = ({
                 onChange={onChange}
               />
               {error && (
-                <div className='item-center body-l absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
+                <div className='item-center body-l pointer-events-none absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
                   {error}
                 </div>
               )}
@@ -55,7 +55,7 @@ const TextField = ({
             onChange={onChange}
           />
           {error && (
-            <div className='item-center body-l absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
+            <div className='item-center body-l pointer-events-none absolute top-0 bottom-0 right-4 my-auto leading-10 text-red'>
               {error}
             </div>
           )}
