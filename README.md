@@ -4,8 +4,9 @@ Task management app with light/dark mode, made using React and Tailwind.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 ![Dark Mode](./screenshots/Kanban%20(1).png?raw=true "Dark Mode")
+![Light Mode](./screenshots/Kanban%20(2).png?raw=true "Light Mode")
+![Dark Mode Add Board](./screenshots/Kanban%20(3).png?raw=true "Dark Mode Add Board")
 
 ## Demo
 
