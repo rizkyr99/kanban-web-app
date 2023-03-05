@@ -34,6 +34,8 @@ const AddTaskModal = () => {
     console.log(error);
   };
 
+  const handleSubmit = () => {};
+
   return (
     <Dialog
       className='relative z-50'
@@ -88,7 +90,7 @@ const AddTaskModal = () => {
               onChange={(e) => console.log(e.target.value)}
             />
 
-            <Button label='Create Task' onClick={() => showModal(false)} full />
+            <Button label='Create Task' onClick={() => handleSubmit()} full />
           </Dialog.Panel>
         </div>
       </div>

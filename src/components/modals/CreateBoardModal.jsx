@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import crossIcon from '../../assets/icon-cross.svg';
 import { Dialog } from '@headlessui/react';
 import TextField from '../TextField';
-import Dropdown from '../Dropdown';
 import { useState } from 'react';
 import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,7 +31,7 @@ const CreateBoardModal = () => {
   };
 
   const createBoard = () => {
-    if (name == '') {
+    if (name === '') {
       setNameError(`Can't be empty`);
     } else {
       const existingBoard = boards.map((board) => board.name);

@@ -1,19 +1,28 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addColumn } from '../features/task/taskSlice';
 import TaskItem from './TaskItem';
 
 const TaskColumn = ({ column, create }) => {
+  const currentBoard = useSelector((state) => state.currentBoard.value);
+  const dispatch = useDispatch();
   return (
     <div className='min-h-[120px]'>
       <div className='h-12'>
         {!create && (
           <div className='heading-s flex items-center gap-x-3 uppercase text-mediumGrey'>
             <span className='inline-block h-3 w-3 rounded-full bg-mainPurple'></span>{' '}
-            {column.name} ({column.tasks.length})
+            <div className='border-none outline-none' contentEditable>
+              {column.name}
+            </div>
+            ({column.tasks.length})
           </div>
         )}
       </div>
       {create ? (
-        <div className='heading-xl flex h-[calc(100%-48px)] w-[280px] cursor-pointer items-center justify-center rounded-md bg-gradient-to-b from-[rgba(233,239,250,1)] to-[rgba(233,239,250,.5)] text-mediumGrey hover:text-mainPurple dark:from-[rgba(43,44,55,1)] dark:to-[rgba(43,44,55,.5)]'>
+        <div
+          onClick={() => dispatch(addColumn(currentBoard))}
+          className='heading-xl flex h-[calc(100%-48px)] w-[280px] cursor-pointer items-center justify-center rounded-md bg-gradient-to-b from-[rgba(233,239,250,1)] to-[rgba(233,239,250,.5)] text-mediumGrey hover:text-mainPurple dark:from-[rgba(43,44,55,1)] dark:to-[rgba(43,44,55,.5)]'>
           + New Column
         </div>
       ) : (

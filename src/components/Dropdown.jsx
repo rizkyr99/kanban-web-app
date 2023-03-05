@@ -10,7 +10,7 @@ const Dropdown = ({ label, options, onChange }) => {
           </label>
           <select
             type='text'
-            className='body-l h-10 w-full rounded border border-[rgba(130,143,163,.25)] bg-white pl-4 capitalize outline-none dark:bg-darkGrey dark:text-white'
+            className='body-l h-10 w-full appearance-none rounded border border-[rgba(130,143,163,.25)] bg-white pl-4 capitalize outline-none dark:bg-darkGrey dark:text-white'
             onChange={onChange}>
             {options.map((option) => (
               <option value={option.name} className='capitalize'>

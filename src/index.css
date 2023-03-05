@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  *,
   html,
   body {
     font-family: 'Plus Jakarta Sans';
@@ -49,5 +50,9 @@
 
   .shadowCard {
     box-shadow: 0 4px 6px rgba(54, 78, 126, 0.1015);
+  }
+
+  .TextField {
+    @apply body-l h-10 w-full rounded border px-4 outline-none placeholder:text-black/25 dark:bg-darkGrey dark:text-white dark:placeholder:text-white/25;
   }
 }
